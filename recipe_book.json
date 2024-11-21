@@ -1,0 +1,94 @@
+{
+  "uuid": "1644a548-ac54-4bda-9ca3-d37b8f818d1a",
+  "lastMigration": 33,
+  "name": "Recipe book",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 12345,
+  "hostname": "0.0.0.0",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "5e8e2bb0-ede3-487e-a533-9ba9f0daa0f1",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes",
+      "responses": [
+        {
+          "uuid": "d9f34c72-97c4-4fc2-8eb7-eecc8a78f37e",
+          "body": "{\r\n  \"recipes\": [\r\n    {\r\n        \"name\": \"Bandeja Paisa\",\r\n        \"author\": \"Doña Gloria\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/06/20/17/44/food-5321841_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine los frijoles con hogao y plátano maduro.\",\r\n            \"Prepare el arroz blanco, carne molida y chicharrón.\",\r\n            \"Fría los huevos y sirva con aguacate.\",\r\n            \"Acompañe con una arepa antioqueña.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Ajiaco Santafereño\",\r\n        \"author\": \"Chef Andrés\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2019/09/25/16/29/tamale-4504060_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine las papas con pollo y mazorca.\",\r\n            \"Agregue guascas y deje cocinar a fuego lento.\",\r\n            \"Sirva con crema de leche y alcaparras.\",\r\n            \"Acompañe con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Sancocho Valluno\",\r\n        \"author\": \"Abuela Marta\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2016/07/20/07/00/gastronomy-1529736_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine el pollo en agua con cebolla y ajo.\",\r\n            \"Agregue yuca, papa criolla y plátano verde.\",\r\n            \"Incorpore mazorca y cilantro fresco.\",\r\n            \"Sirva con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Arepas de Chócolo\",\r\n        \"author\": \"Panadería El Molino\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2014/09/23/04/19/corn-457153_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Licúe maíz tierno con leche, azúcar y sal.\",\r\n            \"Vierta la mezcla en un sartén caliente con mantequilla.\",\r\n            \"Cocine hasta dorar por ambos lados.\",\r\n            \"Acompañe con queso fresco derretido.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Empanadas Colombianas\",\r\n        \"author\": \"Doña Luz\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/02/11/19/03/meal-4840666_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Prepare la masa con harina de maíz, agua y sal.\",\r\n            \"Rellene con carne desmechada y papa criolla.\",\r\n            \"Forme las empanadas y séllalas con cuidado.\",\r\n            \"Fríalas en aceite caliente hasta dorar.\"\r\n        ]\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "5e8e2bb0-ede3-487e-a533-9ba9f0daa0f1"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
