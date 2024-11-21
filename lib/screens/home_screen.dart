@@ -3,32 +3,51 @@ import 'package:recipe_book/screens/recipe_detail.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  Future<List<dynamic>> FetchRecipes() async {
+  Future<List<dynamic>> fetchRecipes() async {
     // Android 10.0.2.2
     // iOS 127.0.0.1
-    final url = Uri.parse('http://localhost:12345/recipes');
-    final response = await http.get(url);
-    final data = jsonDecode(response.body);
-    return data['recipes'];
+    // Web localhost
+    // ip red
+    final url = Uri.parse('http://192.168.18.141:12345/recipes');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data['recipes'];
+      } else {
+        print('Error: ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      print('Error fetching recipes: $e');
+      return [];
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<dynamic>>(
-        future: FetchRecipes(),
-        builder: (context, snapshot){
-          final recipes = snapshot.data ?? [];
-          return ListView.builder(
-            itemCount: recipes.length,
-            itemBuilder: (context, index){
-              return _RecipesCard(context, recipes[index]);
-            }
-          );
+        future: fetchRecipes(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No recipes available.'));
+          } else {
+            final recipes = snapshot.data!;
+            return ListView.builder(
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                return _RecipesCard(context, recipes[index]);
+              },
+            );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -47,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       isScrollControlled: true,
       enableDrag: true,
       useSafeArea: true,
-      isDismissible: true,  // Esto evita que se cierre al tocar fuera
+      isDismissible: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
@@ -60,7 +79,12 @@ class HomeScreen extends StatelessWidget {
   Widget _RecipesCard(BuildContext context, dynamic recipe) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetail(recipeName: recipe['name'])));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecipeDetail(recipeName: recipe['name'] ?? 'Unknown Recipe'),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -76,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      recipe['image_link'],
+                      recipe['image_link'] ?? 'https://example.com/default_image.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -87,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      recipe['name'],
+                      recipe['name'] ?? 'No Name',
                       style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
                     ),
                     SizedBox(height: 4),
@@ -97,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     Text(
-                      recipe['author'],
+                      recipe['author'] ?? 'No Author',
                       style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
                     ),
                     SizedBox(height: 4),
@@ -131,7 +155,6 @@ class RecipeForm extends StatelessWidget {
     return FocusScope(
       child: GestureDetector(
         onTap: () {
-          // Evita que el bottom sheet se cierre al tocar dentro del formulario
           if (!FocusScope.of(context).hasPrimaryFocus) {
             FocusScope.of(context).unfocus();
           }
@@ -269,6 +292,7 @@ class RecipeForm extends StatelessWidget {
     FocusNode? focusNode,
     FocusNode? nextFocusNode,
     int maxLines = 1,
+    context
   }) {
     return TextFormField(
       controller: controller,
@@ -292,7 +316,7 @@ class RecipeForm extends StatelessWidget {
       maxLines: maxLines,
       onFieldSubmitted: (_) {
         if (nextFocusNode != null) {
-          FocusScope.of(focusNode!.context!).requestFocus(nextFocusNode);
+          FocusScope.of(context).requestFocus(nextFocusNode);
         }
       },
       textInputAction: nextFocusNode != null ? TextInputAction.next : TextInputAction.done,
