@@ -1,50 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_book/screens/recipe_detail.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:recipe_book/provider/recipes_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  Future<List<dynamic>> fetchRecipes() async {
-    // Android 10.0.2.2
-    // iOS 127.0.0.1
-    // Web localhost
-    // ip red
-    final url = Uri.parse('http://192.168.18.141:12345/recipes');
-    try {
-      final response = await http.get(url);
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data['recipes'];
-      } else {
-        print('Error: ${response.statusCode}');
-        return [];
-      }
-    } catch (e) {
-      print('Error fetching recipes: $e');
-      return [];
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final recipesProvider = Provider.of<RecipesProvider>(context, listen: false);
+    recipesProvider.fetchRecipes();
+
     return Scaffold(
-      body: FutureBuilder<List<dynamic>>(
-        future: fetchRecipes(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+      body: Consumer<RecipesProvider>(
+        builder: (context, provider, child) {
+          if (provider.isLoading) {
             return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No recipes available.'));
+          } else if (provider.recipes.isEmpty) {
+            return Center(child: Text(AppLocalizations.of(context)!.noRecipes),);
           } else {
-            final recipes = snapshot.data!;
             return ListView.builder(
-              itemCount: recipes.length,
+              itemCount: provider.recipes.length,
               itemBuilder: (context, index) {
-                return _RecipesCard(context, recipes[index]);
+                return _RecipesCard(context, provider.recipes[index]);
               },
             );
           }
@@ -82,7 +61,7 @@ class HomeScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => RecipeDetail(recipeName: recipe['name'] ?? 'Unknown Recipe'),
+            builder: (context) => RecipeDetail(recipesData: recipe),
           ),
         );
       },
@@ -100,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      recipe['image_link'] ?? 'https://example.com/default_image.jpg',
+                      recipe.imageLink ?? 'https://example.com/default_image.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -111,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      recipe['name'] ?? 'No Name',
+                      recipe.name ?? 'No Name',
                       style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
                     ),
                     SizedBox(height: 4),
@@ -121,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     Text(
-                      recipe['author'] ?? 'No Author',
+                      recipe.author ?? 'No Author',
                       style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
                     ),
                     SizedBox(height: 4),

@@ -17,7 +17,69 @@
       "responses": [
         {
           "uuid": "d9f34c72-97c4-4fc2-8eb7-eecc8a78f37e",
-          "body": "{\r\n  \"recipes\": [\r\n    {\r\n        \"name\": \"Bandeja Paisa\",\r\n        \"author\": \"Doña Gloria\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/06/20/17/44/food-5321841_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine los frijoles con hogao y plátano maduro.\",\r\n            \"Prepare el arroz blanco, carne molida y chicharrón.\",\r\n            \"Fría los huevos y sirva con aguacate.\",\r\n            \"Acompañe con una arepa antioqueña.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Ajiaco Santafereño\",\r\n        \"author\": \"Chef Andrés\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2019/09/25/16/29/tamale-4504060_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine las papas con pollo y mazorca.\",\r\n            \"Agregue guascas y deje cocinar a fuego lento.\",\r\n            \"Sirva con crema de leche y alcaparras.\",\r\n            \"Acompañe con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Sancocho Valluno\",\r\n        \"author\": \"Abuela Marta\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2016/07/20/07/00/gastronomy-1529736_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine el pollo en agua con cebolla y ajo.\",\r\n            \"Agregue yuca, papa criolla y plátano verde.\",\r\n            \"Incorpore mazorca y cilantro fresco.\",\r\n            \"Sirva con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Arepas de Chócolo\",\r\n        \"author\": \"Panadería El Molino\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2014/09/23/04/19/corn-457153_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Licúe maíz tierno con leche, azúcar y sal.\",\r\n            \"Vierta la mezcla en un sartén caliente con mantequilla.\",\r\n            \"Cocine hasta dorar por ambos lados.\",\r\n            \"Acompañe con queso fresco derretido.\"\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"Empanadas Colombianas\",\r\n        \"author\": \"Doña Luz\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/02/11/19/03/meal-4840666_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Prepare la masa con harina de maíz, agua y sal.\",\r\n            \"Rellene con carne desmechada y papa criolla.\",\r\n            \"Forme las empanadas y séllalas con cuidado.\",\r\n            \"Fríalas en aceite caliente hasta dorar.\"\r\n        ]\r\n    }\r\n  ]\r\n}\r\n",
+          "body": "{\r\n  \"recipes\": [\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Bandeja Paisa\",\r\n        \"author\": \"Doña Gloria\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/06/20/17/44/food-5321841_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine los frijoles con hogao y plátano maduro.\",\r\n            \"Prepare el arroz blanco, carne molida y chicharrón.\",\r\n            \"Fría los huevos y sirva con aguacate.\",\r\n            \"Acompañe con una arepa antioqueña.\"\r\n        ]\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"name\": \"Ajiaco Santafereño\",\r\n        \"author\": \"Chef Andrés\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2019/09/25/16/29/tamale-4504060_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine las papas con pollo y mazorca.\",\r\n            \"Agregue guascas y deje cocinar a fuego lento.\",\r\n            \"Sirva con crema de leche y alcaparras.\",\r\n            \"Acompañe con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"name\": \"Sancocho Valluno\",\r\n        \"author\": \"Abuela Marta\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2016/07/20/07/00/gastronomy-1529736_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Cocine el pollo en agua con cebolla y ajo.\",\r\n            \"Agregue yuca, papa criolla y plátano verde.\",\r\n            \"Incorpore mazorca y cilantro fresco.\",\r\n            \"Sirva con arroz blanco y aguacate.\"\r\n        ]\r\n    },\r\n    {\r\n        \"id\": 4,\r\n        \"name\": \"Arepas de Chócolo\",\r\n        \"author\": \"Panadería El Molino\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2014/09/23/04/19/corn-457153_960_720.jpg\",\r\n        \"recipe\": [\r\n            \"Licúe maíz tierno con leche, azúcar y sal.\",\r\n            \"Vierta la mezcla en un sartén caliente con mantequilla.\",\r\n            \"Cocine hasta dorar por ambos lados.\",\r\n            \"Acompañe con queso fresco derretido.\"\r\n        ]\r\n    },\r\n    {\r\n        \"id\": 5,\r\n        \"name\": \"Empanadas Colombianas\",\r\n        \"author\": \"Doña Luz\",\r\n        \"image_link\": \"https://cdn.pixabay.com/photo/2020/02/11/19/03/meal-4840666_1280.jpg\",\r\n        \"recipe\": [\r\n            \"Prepare la masa con harina de maíz, agua y sal.\",\r\n            \"Rellene con carne desmechada y papa criolla.\",\r\n            \"Forme las empanadas y séllalas con cuidado.\",\r\n            \"Fríalas en aceite caliente hasta dorar.\"\r\n        ]\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dcc3492b-a5b5-41b0-8965-dc7f0f2982e3",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "favorites",
+      "responses": [
+        {
+          "uuid": "be2995cb-8027-49b6-9e77-9516a50bf107",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6cef2a22-b1d6-4bd5-99ce-03ab1ecc3d80",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "favorites",
+      "responses": [
+        {
+          "uuid": "6f5dcab0-40a5-4dcb-8184-c936c1a63bfb",
+          "body": "{}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -44,6 +106,14 @@
     {
       "type": "route",
       "uuid": "5e8e2bb0-ede3-487e-a533-9ba9f0daa0f1"
+    },
+    {
+      "type": "route",
+      "uuid": "dcc3492b-a5b5-41b0-8965-dc7f0f2982e3"
+    },
+    {
+      "type": "route",
+      "uuid": "6cef2a22-b1d6-4bd5-99ce-03ab1ecc3d80"
     }
   ],
   "proxyMode": false,

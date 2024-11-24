@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import 'package:recipe_book/provider/recipes_provider.dart';
+import 'package:recipe_book/screens/favorites_recipe.dart';
 import 'package:recipe_book/screens/home_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,10 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Recipe Book',
-        home: RecipeBook());
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => RecipesProvider())],
+      child: const MaterialApp(
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+          ],
+          debugShowCheckedModeBanner: false,
+          title: 'Recipe Book',
+          home: RecipeBook()),
+    );
   }
 }
 
@@ -36,9 +46,12 @@ class RecipeBook extends StatelessWidget {
             unselectedLabelColor: Colors.white,
             tabs: [
             Tab(icon: Icon(Icons.home), text: 'Home'),
+            Tab(icon: Icon(Icons.favorite), text: 'Favorites',),
           ]),
         ),
-        body: TabBarView(children: [HomeScreen()]),
+        body: TabBarView(children: 
+        [HomeScreen(),
+        FavoritesRecipe()]),
       ),
     );
   }
